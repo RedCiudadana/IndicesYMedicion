@@ -56579,13 +56579,13 @@ button {
   color: #3699FF;
 }
 .btn.btn-primary {
-  color: #FFFFFF;
+  color: #FFFFFF!important;
   background-color: #7FB0EA;
   border-color: #7FB0EA;
   transition: 0.5s!important;
 }
 .btn.btn-primary i {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 .btn.btn-primary .svg-icon svg g [fill] {
   -webkit-transition: fill 0.3s ease;
@@ -87427,3 +87427,39 @@ body {
   width: 50px;
   height: 50px;
 }
+
+.redes_header{
+  display: flex!important;
+}
+
+.nav-item{
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #212529!important;
+}
+
+.nav-link:hover{
+  color:#7FB0EA!important
+}
+
+.user{
+  border-left: 0.5px solid #999;
+  padding-left: 10px;
+  margin-left: 10px
+}
+
+.user img{
+  width: 25px;
+  height: 25px;
+}
+
+@media (max-width: 991.98px) {
+  .user{
+    border-left: none;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+}
+
