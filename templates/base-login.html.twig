@@ -18,8 +18,32 @@
         {% endblock %}
     </head>
     <body id="kt_body" class="header-fixed header-mobile-fixed header-bottom-enabled subheader-enabled page-loading">
-
+        <div id="preloader-active">
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="text-center">
+                        <img src="{{asset('img/loader.gif')}}" style="width:50%;height:auto;margin:auto" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
         {% block body %}{% endblock %}
+
+        <!--Script Loader-->
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script>
+            (function ($) {
+                ("use strict");
+                // Page loading
+                $(window).on("load", function () {
+                $("#preloader-active").delay(450).fadeOut("slow");
+                $("body").delay(450).css({
+                    overflow: "visible"
+                });
+                });
+            
+            })(jQuery);
+        </script>
 
         {% block javascripts_finales %}
 
