@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{asset('img/redciudadana.png')}}">   
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+            <link href="{{ asset('css/login.css') }}" rel="stylesheet"/>
+
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body id="kt_body" class="header-fixed header-mobile-fixed header-bottom-enabled subheader-enabled page-loading">
+
+        {% block body %}{% endblock %}
+
+        <!-- footer-area-start -->
+        <footer>
+            <div class="footer-middle-area" style="background-image:url({{asset('img/footer/03.png')}});   ">
+                <div class="container">
+                    <div class="row" style="justify-content:space-between">
+                        <div class="col-xl-4 col-lg-4 col-md-4 mt-15 mb-15">
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="{{asset('img/LOGO-RED_BLANCO.png')}}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-9 mt-15 mb-15">
+                            <div class="d-flex align-items-center justify-content-end redes-footer">
+                                <a target="_blank" style="margin:0 3px" href="https://www.facebook.com/Redciudadanagt"><img src="{{asset('img/footer/REDES-27.png')}}"></a>
+                                <a target="_blank" style="margin:0 3px" href="https://twitter.com/redxguate"><img src="{{asset('img/footer/REDES-28.png')}}"></a>
+                                <a target="_blank" style="margin:0 3px" href="https://www.instagram.com/redxguate/"><img src="{{asset('img/footer/REDES-29.png')}}"></a>
+                                <a target="_blank" style="margin:0 3px" href="https://www.youtube.com/channel/UCQwc62j7beStZYFzwPxBEQg"><img src="{{asset('img/footer/REDES-30.png')}}"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <img style="max-width:100%" src="{{asset('img/footer/09.png')}}">
+                        </div>
+                    </div>
+                    <div class="mt-6" style="border-top:none">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="text-center mt-4 mb-15">
+                                    <h6 style="color:#fff">Asociación Civil Red Ciudadana</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer-area-end -->
+
+        {% block javascripts_finales %}
+
+        <!--begin::Page Scripts(used by this page)-->
+        <script src="{{ asset('js/login-4.js') }}"></script>
+        <!--end::Page Scripts-->
+
+        {% endblock %}
+
+    </body>
+</html>
