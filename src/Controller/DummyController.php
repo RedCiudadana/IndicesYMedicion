@@ -27,4 +27,14 @@ class DummyController extends AbstractController
             'controller_name' => 'DummyController',
         ]);
     }
+
+    /**
+     * @Route("/login", name="app_login")
+     */
+    public function login(): Response
+    {
+        return $this->render('dummy/login.html.twig', [
+            'controller_name' => 'DummyController',
+        ]);
+    }
 }
