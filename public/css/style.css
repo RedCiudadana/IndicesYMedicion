@@ -56561,6 +56561,7 @@ button {
   color: #3699FF;
   background-color: #F3F6F9;
   border-color: #F3F6F9;
+  transition: 0.5s;
 }
 .btn.btn-default:not(:disabled):not(.disabled):active:not(.btn-text) i, .btn.btn-default:not(:disabled):not(.disabled).active i, .show > .btn.btn-default.dropdown-toggle i, .show .btn.btn-default.btn-dropdown i {
   color: #3699FF;
@@ -56581,6 +56582,7 @@ button {
   color: #FFFFFF;
   background-color: #7FB0EA;
   border-color: #7FB0EA;
+  transition: 0.5s!important;
 }
 .btn.btn-primary i {
   color: #FFFFFF;
@@ -56639,8 +56641,8 @@ button {
 }
 .btn.btn-primary:not(:disabled):not(.disabled):active:not(.btn-text), .btn.btn-primary:not(:disabled):not(.disabled).active, .show > .btn.btn-primary.dropdown-toggle, .show .btn.btn-primary.btn-dropdown {
   color: #FFFFFF;
-  background-color: #187DE4;
-  border-color: #187DE4;
+  background-color: #7FB0EA;
+  border-color: #7FB0EA;
 }
 .btn.btn-primary:not(:disabled):not(.disabled):active:not(.btn-text) i, .btn.btn-primary:not(:disabled):not(.disabled).active i, .show > .btn.btn-primary.dropdown-toggle i, .show .btn.btn-primary.btn-dropdown i {
   color: #FFFFFF;
