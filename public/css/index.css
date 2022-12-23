@@ -1,0 +1,39 @@
+/* Estilo usado en la pagina de inicio */
+
+@font-face {
+    font-family: "Sora Regular";
+    src: url('/fonts/Sora-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Euclid Regular";
+    src: url('/fonts/EuclidCircularA-Regular.ttf');
+}
+
+@media (max-width: 991.98px) {
+    .navbar-nav{
+      align-items:flex-start!important;
+    }
+  }
+
+.title-inicio{
+    font-family:'Sora Regular';
+    font-size: 50px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.linea-titulo{
+    width: 100px;
+    height: 10px;
+    color: #fff;
+    margin: 10px 0;
+}
+
+.texto-inicio{
+    font-family: 'Euclid Regular';
+    color: #fff;
+    font-size: 19px;
+    line-height: 21px;
+    text-align: justify;
+}

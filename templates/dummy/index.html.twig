@@ -2,12 +2,27 @@
 
 {% block title %}Home | Mediciones{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet"/>
+    
+{% endblock %}
+
 {% block body %}
         <div class="section" style="background-image:url('{{asset('img/WEB_INDICE SICA-11.png')}}')">
             <div class="container">
                 <div class="row mt-20 mb-20">
                     <div class="col-lg-6 my-4">
                         <h1 class="title-inicio">Mediciones Red Ciudadana</h1>
+                        <div class="linea-titulo"></div>
+                        <p class="texto-inicio">
+                            <strong>El Índice de Innovación Pública</strong> mide las capacidades que
+                            poseen las instituciones para generar nuevas o mejoradas
+                            ideas, procesos, productos o servicios que, mediante la
+                            co-creación entre diferentes actores, impacten positivamente
+                            en las necesidades y expectativas de las personas para la
+                            <strong>transformación de la gestión pública.</strong>
+                        </p>
                     </div>
                     <div class="col-lg-6 my-4">
                         <img src="{{asset('img/WEB_INDICE SICA-09.png')}}">

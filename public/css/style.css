@@ -87463,6 +87463,9 @@ body {
     margin-left: 0px;
     margin-top: 10px;
   }
+  .navbar-nav{
+    align-items:flex-start!important;
+  }
 }
 
 /*page loading*/
@@ -87486,8 +87489,3 @@ body {
   max-width: 100px;
 }
 
-.title-inicio{
-  font-size: 50px;
-  color: #fff;
-  font-weight: 600;
-}
