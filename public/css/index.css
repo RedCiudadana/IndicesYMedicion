@@ -6,6 +6,11 @@
 }
 
 @font-face {
+    font-family: "Euclid Light";
+    src: url('/fonts/EuclidCircularA-Light.ttf');
+}
+
+@font-face {
     font-family: "Euclid Regular";
     src: url('/fonts/EuclidCircularA-Regular.ttf');
 }
@@ -14,10 +19,17 @@
     .navbar-nav{
       align-items:flex-start!important;
     }
-  }
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Sora Regular'!important;
+}
+
+p{
+    font-family: 'Euclid Regular'!important;
+}
 
 .title-inicio{
-    font-family:'Sora Regular';
     font-size: 50px;
     color: #fff;
     font-weight: 600;
@@ -31,9 +43,47 @@
 }
 
 .texto-inicio{
-    font-family: 'Euclid Regular';
     color: #fff;
     font-size: 19px;
     line-height: 21px;
     text-align: justify;
+}
+
+.cuadro-inicio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.imagen-cuadro{
+    position: relative;
+    transition: 0.5s;
+}
+
+.imagen-cuadro::after{
+    font-family: 'Euclid Light'!important;
+    content: "Ver más";
+    color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color: rgb(0, 0, 0, 0.6);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.imagen-cuadro:hover::after{
+    visibility: visible;
+}
+
+.cuadro-inicio h5{
+    margin: 20px 0;
 }
