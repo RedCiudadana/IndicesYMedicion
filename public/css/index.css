@@ -33,12 +33,18 @@ p{
     font-size: 50px;
     color: #fff;
     font-weight: 600;
+    position: relative;
+    margin-bottom: 30px;
 }
 
-.linea-titulo{
-    width: 100px;
-    height: 10px;
-    color: #fff;
+.title-inicio::after{
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: #fff;
+    bottom: -30px;
+    left: 0;
     margin: 10px 0;
 }
 
@@ -46,6 +52,7 @@ p{
     color: #fff;
     font-size: 19px;
     line-height: 21px;
+    margin-top: 40px;
     text-align: justify;
 }
 
@@ -54,7 +61,6 @@ p{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
 }
 
 .imagen-cuadro{
