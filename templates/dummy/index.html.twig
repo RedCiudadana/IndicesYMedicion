@@ -1,21 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DummyController!{% endblock %}
+{% block title %}Home | Mediciones{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/d3ah/Projects/RedCiudadana/IndicesYMedicion/src/Controller/DummyController.php'|file_link(0) }}">src/Controller/DummyController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/d3ah/Projects/RedCiudadana/IndicesYMedicion/templates/dummy/index.html.twig'|file_link(0) }}">templates/dummy/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="section" style="background-image:url('{{asset('img/WEB_INDICE SICA-11.png')}}')">
+            <div class="container">
+                <div class="row mt-20 mb-20">
+                    <div class="col-lg-6 my-4">
+                        <h1 class="title-inicio">Mediciones Red Ciudadana</h1>
+                    </div>
+                    <div class="col-lg-6 my-4">
+                        <img src="{{asset('img/WEB_INDICE SICA-09.png')}}">
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}

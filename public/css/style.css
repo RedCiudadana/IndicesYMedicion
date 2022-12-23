@@ -87415,6 +87415,8 @@ body {
   }
 }
 
+/* ESTILO PROPIO */
+
 .footer-middle-area{
   width: 100%
 }
@@ -87482,4 +87484,10 @@ body {
 .preloader img.jump {
   max-height: 100px;
   max-width: 100px;
+}
+
+.title-inicio{
+  font-size: 50px;
+  color: #fff;
+  font-weight: 600;
 }
