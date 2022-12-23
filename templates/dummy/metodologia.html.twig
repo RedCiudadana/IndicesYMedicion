@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Metodología | Mediciones{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+        <div class="section" style="background-image:url('{{asset('img/WEB_INDICE SICA-12.png')}}');background-size: cover;">
+            <div class="container">
+                <div class="row mt-20 mb-20 d-flex justify-content-center">
+                    <div class="col-lg-8 col-sm-12 mt-20 mb-20">
+                        <div style="text-align:center">
+                            <img src ="{{asset('img/metodologia/01.png')}}">
+                            <br>
+                            <h1 class="title-about">Metodología de medición</h1>
+                            <p class="texto-about">
+                                El índice de Innovación Pública mide las capacidades que poseen las instituciones para
+                                generar nuevas o mejoradas ideas, procesos, productos o servicios que, mediante la
+                                co-creación entre diferentes actores, impacten positivamente en las necesidades y
+                                expectativas de las personas para la transformación de la gestión pública.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" style="background-color:#fff">
+            <div class="container">
+                <div class="row mt-20 mb-20">              
+                    <div class="col-lg-6 col-sm-12 my-4">
+                        <img class="w-100 h-100" src="{{asset('img/WEB_INDICE SICA-10.png')}}">
+                    </div>
+                    <div class="col-lg-6 col-sm-12 my-4">
+                        <img class="w-100 h-100" src="{{asset('img/WEB_INDICE SICA-10.png')}}">
+                    </div>
+                </div>
+
+                <div class="row mt-20 mb-20">            
+
+                    <div class="col-lg-12 col-sm-12 my-4 text-center">
+                        <h1>¿Qué mide?</h1>
+                        <br>
+                        <p class="texto-body">
+                            El Índice de inovación Pública mide las capacidades 
+                            que poseen las instituciones para generar nuevas o 
+                            mejoradas ideas, procesos, productos o servicios que, 
+                            mediante la co-creación entre diferentes actores, impactan 
+                            positivamente en las necesidades y expectativas de las 
+                            personas para la transformación de la gestión pública
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="row mt-20 mb-20">              
+                    <div class="col-lg-12 col-sm-12 my-4">
+                        <img class="w-100" style="height:400px" src="{{asset('img/WEB_INDICE SICA-10.png')}}">
+                    </div>
+                </div>
+
+                <div class="row mt-20 mb-20">            
+
+                    <div class="col-lg-6 col-sm-12 my-4 d-flex justify-content-center" style="flex-direction:column">
+                        <h1>¿Qué mide?</h1>
+                        <br>
+                        <p class="texto-body">
+                            El Índice de inovación Pública mide las capacidades 
+                            que poseen las instituciones para generar nuevas o 
+                            mejoradas ideas, procesos, productos o servicios que, 
+                            mediante la co-creación entre diferentes actores, impactan 
+                            positivamente en las necesidades y expectativas de las 
+                            personas para la transformación de la gestión pública
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12 my-4">
+                        <img class="w-100 h-100" src="{{asset('img/WEB_INDICE SICA-10.png')}}">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+{% endblock %}

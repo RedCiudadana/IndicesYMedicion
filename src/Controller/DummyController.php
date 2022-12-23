@@ -37,4 +37,14 @@ class DummyController extends AbstractController
             'controller_name' => 'DummyController',
         ]);
     }
+
+    /**
+     * @Route("/metodologia", name="app_metodologia")
+     */
+    public function metodologia(): Response
+    {
+        return $this->render('dummy/metodologia.html.twig', [
+            'controller_name' => 'DummyController',
+        ]);
+    }
 }

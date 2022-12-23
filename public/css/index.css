@@ -96,6 +96,10 @@ p{
     margin: 20px 0;
 }
 
+.texto-body{
+    font-size: 17px;
+}
+
 /* ABOUT */
 .title-about{
     font-size: 50px;
@@ -103,4 +107,12 @@ p{
     font-weight: 600;
     position: relative;
     margin-bottom: 30px;
+}
+
+.texto-about{
+    color: #fff;
+    font-size: 19px;
+    line-height: 21px;
+    margin-top: 20px;
+    text-align: center;
 }
