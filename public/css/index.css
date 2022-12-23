@@ -29,6 +29,8 @@ p{
     font-family: 'Euclid Regular'!important;
 }
 
+/* INICIO */
+
 .title-inicio{
     font-size: 50px;
     color: #fff;
@@ -92,4 +94,13 @@ p{
 
 .cuadro-inicio h5{
     margin: 20px 0;
+}
+
+/* ABOUT */
+.title-about{
+    font-size: 50px;
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 30px;
 }

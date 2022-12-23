@@ -27,4 +27,14 @@ class DummyController extends AbstractController
             'controller_name' => 'DummyController',
         ]);
     }
+
+    /**
+     * @Route("/about", name="app_about")
+     */
+    public function about(): Response
+    {
+        return $this->render('dummy/about.html.twig', [
+            'controller_name' => 'DummyController',
+        ]);
+    }
 }

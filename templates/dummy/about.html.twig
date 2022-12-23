@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About | Mediciones{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+        <div class="section" style="background-image:url('{{asset('img/WEB_INDICE SICA-11.png')}}')">
+            <div class="container">
+                <div class="row mt-20 mb-20">
+                    <div class="col-lg-6 col-sm-12 my-4 d-flex" style="align-items:center">
+                        <h1 class="title-about">Mediciones Red Ciudadana</h1>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 my-4">
+                        <img src="{{asset('img/WEB_INDICE SICA-09.png')}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" style="background-color:#fff">
+            <div class="container">
+                <div class="row mt-20 mb-20">              
+                    <div class="col-lg-6 col-sm-12 my-4 d-flex justify-content-center" style="flex-direction:column">
+                        <h1 >¿Qué es mediciones Red Ciudadana?</h1>
+                        <br>
+                        <p>
+                            <strong>El Índice de Innovación Pública</strong> mide las capacidades que
+                            poseen las instituciones para generar nuevas o mejoradas
+                            ideas, procesos, productos o servicios que, mediante la
+                            co-creación entre diferentes actores, impacten positivamente
+                            en las necesidades y expectativas de las personas para la
+                            <strong>transformación de la gestión pública.</strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 my-4">
+                        <img class="w-100 h-100" src="{{asset('img/WEB_INDICE SICA-10.png')}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
