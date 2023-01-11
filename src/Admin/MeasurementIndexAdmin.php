@@ -4,17 +4,40 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
-use Sonata\AdminBundle\Form\Extension\ChoiceTypeExtension;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Sonata\DoctrineORMAdminBundle\Model\ModelManager;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Extension\ChoiceTypeExtension;
+use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Knp\Menu\ItemInterface as MenuItemInterface;
 
 final class MeasurementIndexAdmin extends AbstractAdmin
 {
+    protected function configureTabMenu(MenuItemInterface $menu, string $action, ?AdminInterface $childAdmin = null): void
+    {
+        if (!$childAdmin && !in_array($action, ['edit', 'show'])) {
+            return;
+        }
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+        $id = $admin->getRequest()->get('id');
+
+        $menu->addChild('View MeasurementIndex', $admin->generateMenuUrl('show', ['id' => $id]));
+
+        if ($this->isGranted('EDIT')) {
+            $menu->addChild('Edit MeasurementIndex', $admin->generateMenuUrl('edit', ['id' => $id]));
+        }
+
+        if ($this->isGranted('LIST')) {
+            $menu->addChild('Manage Questions', $admin->generateMenuUrl('admin.survey_question.list', ['id' => $id]));
+        }
+    }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
@@ -22,7 +45,6 @@ final class MeasurementIndexAdmin extends AbstractAdmin
             ->add('id')
             ->add('title')
             ->add('description')
-            ->add('level')
             ;
     }
 
@@ -32,14 +54,14 @@ final class MeasurementIndexAdmin extends AbstractAdmin
             ->add('id')
             ->add('title')
             ->add('description')
-            ->add('level')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
                     'delete' => [],
                 ],
-            ]);
+            ])
+            ;
     }
 
     protected function configureFormFields(FormMapper $form): void
@@ -48,18 +70,9 @@ final class MeasurementIndexAdmin extends AbstractAdmin
             // ->add('id')
             ->add('title')
             ->add('description')
-            ->add('level', ChoiceType::class, [
-                'multiple' => false,
-                'expanded' => true,
-                'attr' => [
-                    'style' => 'display: flex; justify-content: center'
-                ],
-                'choices' => array_combine([
-                    'a+1 Demuestra capcidad de tecnologia, tiene mas de 2 computadoras, conexion a internet y servicio de IT+',
-                    'a+2 Demuestra capcidad de tecnologia, tiene mas de 2 computadoras, conexion a internet y servicio de IT+',
-                    'a+3 Demuestra capcidad de tecnologia, tiene mas de 2 computadoras, conexion a internet y servicio de IT+',
-                ], range(0, 2))
-            ])
+            ->add('whatWeMeasure')
+            ->add('howWeMeasure')
+            ->add('researchers')
             ;
     }
 
@@ -69,7 +82,6 @@ final class MeasurementIndexAdmin extends AbstractAdmin
             ->add('id')
             ->add('title')
             ->add('description')
-            ->add('level')
             ;
     }
 }

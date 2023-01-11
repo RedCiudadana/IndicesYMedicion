@@ -22,8 +22,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    admin.survey_question:
+        class: App\Admin\SurveyQuestionAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\SurveyQuestion, controller: ~, manager_type: orm, group: admin, label: SurveyQuestion }
 
     admin.measurement_index:
         class: App\Admin\MeasurementIndexAdmin
         tags:
             - { name: sonata.admin, model_class: App\Entity\MeasurementIndex, controller: ~, manager_type: orm, group: admin, label: MeasurementIndex }
+        calls:
+            - [addChild, ['@admin.survey_question', 'measurementIndex']]
