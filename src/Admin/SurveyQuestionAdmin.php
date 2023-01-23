@@ -8,7 +8,54 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Sonata\AdminBundle\Form\Type\CollectionType;
 use Sonata\AdminBundle\Show\ShowMapper;
+
+class ChoiceValue {
+    private $key;
+    private $value;
+
+    /**
+     * Get the value of key
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * Set the value of key
+     *
+     * @return  self
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of value
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set the value of value
+     *
+     * @return  self
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+}
 
 final class SurveyQuestionAdmin extends AbstractAdmin
 {
@@ -38,7 +85,8 @@ final class SurveyQuestionAdmin extends AbstractAdmin
                     'edit' => [],
                     'delete' => [],
                 ],
-            ]);
+            ])
+            ;
     }
 
     protected function configureFormFields(FormMapper $form): void
@@ -46,7 +94,27 @@ final class SurveyQuestionAdmin extends AbstractAdmin
         $form
             ->add('name')
             ->add('description')
-            ->add('formType')
+            ->add('formType', ChoiceFieldMaskType::class, [
+                'choices' => [
+                    'numero' => 'number',
+                    'opciones' => 'choice',
+                ],
+                'map' => [
+                    'number' => ['min', 'max'],
+                    'choice' => ['choices'],
+                ],
+                'placeholder' => 'Choose an option',
+                'required' => false
+            ])
+            ->add('min')
+            ->add('max')
+            ->add('choices', CollectionType::class, [
+                'allow_add' => true,
+                'allow_delete' => true,
+                // 'prototype' => true,
+                // 'prototype_data' => new ChoiceValue()
+            ])
+            ->add('formOptions')
             ;
     }
 

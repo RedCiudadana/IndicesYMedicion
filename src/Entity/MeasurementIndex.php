@@ -49,10 +49,16 @@ class MeasurementIndex
      */
     private $surveyQuestions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SurveySubmit::class, mappedBy="measurementIndex", orphanRemoval=true)
+     */
+    private $surveySubmits;
+
     public function __construct()
     {
         $this->researchers = new ArrayCollection();
         $this->surveyQuestions = new ArrayCollection();
+        $this->surveySubmits = new ArrayCollection();
     }
 
     public function __toString()
@@ -161,6 +167,36 @@ class MeasurementIndex
             // set the owning side to null (unless already changed)
             if ($surveyQuestion->getMeasurementIndex() === $this) {
                 $surveyQuestion->setMeasurementIndex(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SurveySubmit>
+     */
+    public function getSurveySubmits(): Collection
+    {
+        return $this->surveySubmits;
+    }
+
+    public function addSurveySubmit(SurveySubmit $surveySubmit): self
+    {
+        if (!$this->surveySubmits->contains($surveySubmit)) {
+            $this->surveySubmits[] = $surveySubmit;
+            $surveySubmit->setMeasurementIndex($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSurveySubmit(SurveySubmit $surveySubmit): self
+    {
+        if ($this->surveySubmits->removeElement($surveySubmit)) {
+            // set the owning side to null (unless already changed)
+            if ($surveySubmit->getMeasurementIndex() === $this) {
+                $surveySubmit->setMeasurementIndex(null);
             }
         }
 

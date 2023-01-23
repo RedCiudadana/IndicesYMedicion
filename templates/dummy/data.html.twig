@@ -16,9 +16,11 @@
     <h1>¿Cómo lo medimos?</h1>
     <p>{{ measurementIndex.howWeMeasure }}</p>
     <hr>
-    <p>Llene las siguientes preguntas</p>
+    <p>Datos recoletados:</p>
 
-    {{ form_start(form) }}
-    {{ form_end(form) }}
+    {% for surveySubmit in data %}
+      {{ surveySubmit.submittedData|json_encode() }}
+      <br>
+    {% endfor %}
 </div>
 {% endblock %}

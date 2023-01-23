@@ -42,7 +42,7 @@ class SurveyQuestion
     private $formType;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
     private $formOptions = [];
 
@@ -51,6 +51,21 @@ class SurveyQuestion
      * @ORM\JoinColumn(nullable=false)
      */
     private $measurementIndex;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $min;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $max;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $choices = [];
 
     public function __toString()
     {
@@ -103,7 +118,7 @@ class SurveyQuestion
         return $this->formOptions;
     }
 
-    public function setFormOptions(array $formOptions): self
+    public function setFormOptions(array $formOptions = null): self
     {
         $this->formOptions = $formOptions;
 
@@ -118,6 +133,42 @@ class SurveyQuestion
     public function setMeasurementIndex(?MeasurementIndex $measurementIndex): self
     {
         $this->measurementIndex = $measurementIndex;
+
+        return $this;
+    }
+
+    public function getMin(): ?int
+    {
+        return $this->min;
+    }
+
+    public function setMin(?int $min): self
+    {
+        $this->min = $min;
+
+        return $this;
+    }
+
+    public function getMax(): ?int
+    {
+        return $this->max;
+    }
+
+    public function setMax(?int $max): self
+    {
+        $this->max = $max;
+
+        return $this;
+    }
+
+    public function getChoices(): ?array
+    {
+        return $this->choices;
+    }
+
+    public function setChoices(?array $choices): self
+    {
+        $this->choices = $choices;
 
         return $this;
     }
