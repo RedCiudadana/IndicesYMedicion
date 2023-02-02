@@ -5,16 +5,16 @@ namespace App\Controller;
 use App\Entity\MeasurementIndex;
 use App\Entity\SurveySubmit;
 use App\Repository\SurveySubmitRepository;
+use Jawira\CaseConverter\Convert;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints as Assert;
-use Jawira\CaseConverter\Convert;
 
 class DummyController extends AbstractController
 {
@@ -49,7 +49,7 @@ class DummyController extends AbstractController
                     break;
 
                 case 'number':
-                    $formType = IntegerType::class;
+                    $formType = NumberType::class;
 
                     $formOptions = array_merge($formOptions, $question->getFormOptions() ?? []);
                     $formOptions = array_merge($formOptions, [

@@ -1,0 +1,4 @@
+- Estilos en encuesta de indice
+- Editar respuesta de encuesta
+- Instalar en computadora de José.
+- Roles
