@@ -1,0 +1,23 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
+<div class="sonata-ba-form">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h1>{{ measurementIndex.title }}</h1>
+                </div>
+                <div class="box-body">
+                    <p>Datos recoletados:</p>
+
+                    {% for surveySubmit in data %}
+                      {{ surveySubmit.submittedData|json_encode() }}
+                      <br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

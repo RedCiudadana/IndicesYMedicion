@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 final class MeasurementIndexAdmin extends AbstractAdmin
 {
@@ -59,6 +60,12 @@ final class MeasurementIndexAdmin extends AbstractAdmin
                     'show' => [],
                     'edit' => [],
                     'delete' => [],
+                    'submit' => [
+                        'template' => 'measurement_index/list__action_submit.html.twig'
+                    ],
+                    'data' => [
+                        'template' => 'measurement_index/list__action_submit_data.html.twig'
+                    ]
                 ],
             ])
             ;
@@ -83,5 +90,12 @@ final class MeasurementIndexAdmin extends AbstractAdmin
             ->add('title')
             ->add('description')
             ;
+    }
+
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection
+            ->add('submitSurvey', '{id}/submit_survey')
+            ->add('submitSurveyData', '{id}/submit_survey_data');
     }
 }
