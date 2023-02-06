@@ -87,7 +87,9 @@ final class MeasurementIndexAdminController extends CRUDController
             $surveySubmitRepository->add($surveySubmit, true);
 
             $this->addFlash('success', 'Se envio correctamente la encuesta');
-            return $this->redirectToRoute('admin_app_surveysubmit_submitSurvey', [
+
+            // TODO: mostrar flashes aqui
+            return $this->redirectToRoute('admin_app_measurementindex_submitSurvey', [
                 'id' => $measurementIndex->getId()
             ]);
         }

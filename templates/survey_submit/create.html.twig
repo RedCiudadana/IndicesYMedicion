@@ -1,34 +1,39 @@
 {% extends '@SonataAdmin/standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
-<div class="sonata-ba-form">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h1>{{ measurementIndex.title }}</h1>
-                </div>
-                <div class="box-body">
-                    <p>{{ measurementIndex.description }}</p>
-                    <h1>¿Qué medimos?</h1>
-                    <p>{{ measurementIndex.whatWeMeasure }}</p>
-                    <h1>¿Cómo lo medimos?</h1>
-                    <p>{{ measurementIndex.howWeMeasure }}</p>
-                    <hr>
-                    <p>Llene las siguientes preguntas</p>
 
-                    <div>
-                        {{ form_start(form) }}
-                            {% for field in form.children %}
-                                <div class="form-group">
-                                    {{ form_row(field) }}
-                                </div>
-                            {% endfor %}
-                        {{ form_end(form) }}
+    {% block notice %}
+        {% include '@SonataTwig/FlashMessage/render.html.twig' %}
+    {% endblock notice %}
+
+    <div class="sonata-ba-form">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h1>{{ measurementIndex.title }}</h1>
+                    </div>
+                    <div class="box-body">
+                        <p>{{ measurementIndex.description }}</p>
+                        <h1>¿Qué medimos?</h1>
+                        <p>{{ measurementIndex.whatWeMeasure }}</p>
+                        <h1>¿Cómo lo medimos?</h1>
+                        <p>{{ measurementIndex.howWeMeasure }}</p>
+                        <hr>
+                        <p>Llene las siguientes preguntas</p>
+
+                        <div>
+                            {{ form_start(form) }}
+                                {% for field in form.children %}
+                                    <div class="form-group">
+                                        {{ form_row(field) }}
+                                    </div>
+                                {% endfor %}
+                            {{ form_end(form) }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

@@ -80,16 +80,20 @@ final class SurveySubmitAdminController extends CRUDController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $surveySubmit = new SurveySubmit();
             $surveySubmit->setMeasurementIndex($measurementIndex);
             $surveySubmit->setSubmittedBy($this->getUser());
             $surveySubmit->setSubmittedData($form->getData());
 
             $surveySubmitRepository->add($surveySubmit, true);
 
-            $this->addFlash('success', 'Se envio correctamente la encuesta');
-            return $this->redirectToRoute('admin_app_surveysubmit_submitSurvey', [
-                'id' => $measurementIndex->getId()
+            $this->addFlash('success', 'Se actualizo correctamente la encuesta');
+
+            return $this->redirectToRoute('admin_app_surveysubmit_list', [
+                'filter' => [
+                    'measurementIndex' => [
+                        'value' => $measurementIndex->getId()
+                    ]
+                ]
             ]);
         }
 

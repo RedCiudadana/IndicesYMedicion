@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Sonata\DoctrineORMAdminBundle\Model\ModelManager;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -16,10 +17,29 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 final class MeasurementIndexAdmin extends AbstractAdmin
 {
+    /**
+     * {@inheritdoc}
+     */
+    private $token;
+
+    /**
+     * {@inheritdoc}
+     */
+    private $authorizationChecker;
+
+    public function __construct(TokenStorageInterface $token, AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->token = $token;
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
     protected function configureTabMenu(MenuItemInterface $menu, string $action, ?AdminInterface $childAdmin = null): void
     {
         if (!$childAdmin && !in_array($action, ['edit', 'show'])) {
@@ -97,5 +117,37 @@ final class MeasurementIndexAdmin extends AbstractAdmin
         $collection
             ->add('submitSurvey', '{id}/submit_survey')
             ->add('submitSurveyData', '{id}/submit_survey_data');
+    }
+
+    protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
+    {
+        /**
+         * @var Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery
+         */
+        $query = parent::configureQuery($query);
+
+        /**
+         * @var QueryBuilder
+         */
+        $queryBuilder = $query->getQueryBuilder();
+
+        /**
+         * @var SonataUserUser
+         */
+        $user = $this->token->getToken()->getUser();
+
+        if (!$this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+            $rootAlias = current($queryBuilder->getRootAliases());
+
+            $queryBuilder->innerJoin($rootAlias . '.researchers', 'r');
+
+            $queryBuilder->andWhere(
+                $queryBuilder->expr()->in('r.id', ':user')
+            );
+
+            $queryBuilder->setParameter('user', $user->getId());
+        }
+
+        return $query;
     }
 }

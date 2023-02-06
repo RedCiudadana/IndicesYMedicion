@@ -91,10 +91,6 @@ final class SurveyQuestionAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
-        dump($form);
-        dump($form->getAdmin()->getSubject());
-        die;
-
         $form
             ->add('name')
             ->add('description')

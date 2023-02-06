@@ -32,7 +32,7 @@ class SurveySubmit
      * @ORM\Column(type="json_document", options={"jsonb":true})
      */
     private $submittedData;
-
+ 
     public function getId(): ?int
     {
         return $this->id;
