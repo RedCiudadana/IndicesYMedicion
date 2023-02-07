@@ -1,6 +1,12 @@
 # Instalación
 
-Instalar php7.4 con las extensiones requeridas por Symfony 5.4.*
+# Instalar php
+
+Instalar php8.1 con las extensiones requeridas por Symfony 5.4.*
+
+# Instalar symfony tool
+
+https://symfony.com/download
 
 # Instalar PostgreSQL 
 
