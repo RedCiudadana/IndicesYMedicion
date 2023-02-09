@@ -22,6 +22,8 @@
                         <hr>
                         <p>Llene las siguientes preguntas</p>
 
+                        {% form_theme form 'form_admin_fields.html.twig' %}
+
                         <div>
                             {{ form_start(form) }}
                                 {% for field in form.children %}

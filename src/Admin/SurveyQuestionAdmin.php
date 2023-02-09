@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Sonata\AdminBundle\Form\Type\CollectionType;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class ChoiceValue {
@@ -114,7 +115,9 @@ final class SurveyQuestionAdmin extends AbstractAdmin
                 // 'prototype' => true,
                 // 'prototype_data' => new ChoiceValue()
             ])
-            ->add('formOptions')
+            ->add('formOptions', null, [
+                'disabled' => false
+            ])
             ;
     }
 
@@ -127,5 +130,15 @@ final class SurveyQuestionAdmin extends AbstractAdmin
             ->add('formType')
             ->add('formOptions')
             ;
+    }
+
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        if ($this->isChild()) {
+            return;
+        }
+
+        // This is the route configuration as a parent
+        $collection->clear();
     }
 }

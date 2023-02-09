@@ -67,8 +67,11 @@ final class SurveySubmitAdminController extends CRUDController
                     break;
             }
 
-            $converter = new Convert($question->getName());
-            $formBuilder->add($converter->toCamel(), $formType, $formOptions);
+            $formBuilder->add(
+                sprintf('measurement_index_%s_survey_question_%s', $measurementIndex->getId(), $question->getId()),
+                $formType,
+                $formOptions
+            );
         }
 
         $formBuilder->add('submit', SubmitType::class, [

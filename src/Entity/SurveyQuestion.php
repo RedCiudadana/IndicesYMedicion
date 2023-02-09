@@ -14,6 +14,8 @@ namespace App\Entity;
 use App\Repository\SurveyQuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=SurveyQuestionRepository::class)
  */
@@ -47,6 +49,7 @@ class SurveyQuestion
     private $formOptions = [];
 
     /**
+     * #[Assert\NotNull]
      * @ORM\ManyToOne(targetEntity=MeasurementIndex::class, inversedBy="surveyQuestions")
      * @ORM\JoinColumn(nullable=false)
      */
