@@ -1,0 +1,162 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {% for stylesheet in sonata_config.getOption('stylesheets', []) %}
+        <link rel="stylesheet" href="{{ asset(stylesheet) }}">
+    {% endfor %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet"/>
+
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block sonata_nav %}
+{% endblock sonata_nav %}
+
+{% block logo %}
+{% endblock logo %}
+
+{% block sonata_left_side %}
+{% endblock sonata_left_side %}
+
+{% block body_attributes %}class="sonata-bc login-page {% if _use_icheck %}sonata-icheck{% endif %}"{% endblock %}
+
+{% block sonata_wrapper %}
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center">
+                    <img src="{{asset('img/loader.gif')}}" style="width:50%;height:auto;margin:auto" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--begin::Main-->
+    <div class="d-flex flex-column flex-root">
+        {% block sonata_user_login_form %}
+        <!--begin::Login-->
+        <div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid">
+            <!--begin::Content-->
+            <div class="login-container order-2 order-lg-1 d-flex flex-center flex-row-fluid px-7 pt-lg-0 pb-lg-0 pt-4 pb-6 bg-white">
+                <!--begin::Wrapper-->
+                <div class="login-content d-flex flex-column pt-lg-0 pt-12">
+                    <!--begin::Logo-->
+                    <a href="#" class="login-logo pb-xl-20 pb-15">
+                        <img src="{{ asset('img/LOGO-RED_NEGRO.png') }}" class="max-h-70px" alt="" />
+                    </a>
+                    <!--end::Logo-->
+                    <!--begin::Signin-->
+                    <div class="login-form">
+                        {% block sonata_user_login_error %}
+                            {% if error %}
+                                <div class="alert alert-danger alert-error">
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+                        <!--begin::Form-->
+                        <form class="form" action="{{ path("sonata_user_admin_security_check") }}" method="post" role="form">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+                            <div class="form-group has-feedback">
+                                <input class="form-control"
+                                    id="username"
+                                    name="_username"
+                                    placeholder="{{ 'security.login.username'|trans({}, 'SonataUserBundle') }}"
+                                    required="required"
+                                    type="text"
+                                    value="{{ last_username }}"/>
+                                <span class="fas fa-user form-control-feedback"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <input class="form-control"
+                                    id="password"
+                                    name="_password"
+                                    placeholder="{{ 'security.login.password'|trans({}, 'SonataUserBundle') }}"
+                                    required="required"
+                                    type="password"/>
+                                <span class="fas fa-lock form-control-feedback"></span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                            {{ 'security.login.remember_me'|trans({}, 'SonataUserBundle') }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">{{ 'security.login.submit'|trans({}, 'SonataUserBundle') }}</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <a href="{{ reset_route }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+                        
+                    </div>
+                    <!--end::Signin-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--begin::Content-->
+            <!--begin::Aside-->
+            <div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right">
+                <div class="login-conteiner bgi-no-repeat" style="background-size:cover;background-image: url({{ asset('img/imagen_login.png') }});">
+                    <!--begin::Aside title-->
+                    
+                    <!--end::Aside title-->
+                </div>
+            </div>
+            <!--end::Aside-->
+        </div>
+        <!--end::Login-->
+        {% endblock %}
+    </div>
+    <!--end::Main-->
+
+    <!--Script Loader-->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script>
+        (function ($) {
+            ("use strict");
+            // Page loading
+            $(window).on("load", function () {
+            $("#preloader-active").delay(450).fadeOut("slow");
+            $("body").delay(450).css({
+                overflow: "visible"
+            });
+            });
+        
+        })(jQuery);
+    </script>
+
+    <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
+    <!--begin::Global Config(global config for global JS scripts)-->
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+    <!--end::Global Config-->
+    <!--begin::Global Theme Bundle(used by all pages)-->
+    <script src="{{ asset('js/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('js/prismjs.bundle.js') }}"></script>
+    <script src="{{ asset('js/scripts.bundle.min.js') }}"></script>
+
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="{{ asset('js/login-4.js') }}"></script>
+    <!--end::Page Scripts-->
+
+{% endblock sonata_wrapper %}
