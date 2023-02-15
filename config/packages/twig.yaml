@@ -1,5 +1,8 @@
 twig:
-    default_path: '%kernel.project_dir%/templates'
+    paths:
+        "templates/bundles/SonataUser": SonataUser
+        "templates/bundles/SonataAdmin": SonataAdmin
+        "templates": ~
 
 when@test:
     twig:
