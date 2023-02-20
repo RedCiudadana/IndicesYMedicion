@@ -49,14 +49,18 @@ final class MeasurementIndexAdmin extends AbstractAdmin
         $admin = $this->isChild() ? $this->getParent() : $this;
         $id = $admin->getRequest()->get('id');
 
-        $menu->addChild('View MeasurementIndex', $admin->generateMenuUrl('show', ['id' => $id]));
+        // $menu->addChild('View MeasurementIndex', $admin->generateMenuUrl('show', ['id' => $id]));
 
         if ($this->isGranted('EDIT')) {
-            $menu->addChild('Edit MeasurementIndex', $admin->generateMenuUrl('edit', ['id' => $id]));
+            $menu->addChild('Editar indice', $admin->generateMenuUrl('edit', ['id' => $id]));
         }
 
         if ($this->isGranted('LIST')) {
-            $menu->addChild('Manage Questions', $admin->generateMenuUrl('admin.survey_question.list', ['id' => $id]));
+            $menu->addChild('Administrar preguntas', $admin->generateMenuUrl('admin.survey_question.list', ['id' => $id]));
+        }
+
+        if ($this->authorizationChecker->isGranted('ROLE_RESEARCH')) {
+            $menu->addChild('Llenar encuesta', $admin->generateMenuUrl('admin.measurement_index.submitSurvey', ['id' => $id]));
         }
     }
 
@@ -71,6 +75,11 @@ final class MeasurementIndexAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $list): void
     {
+        if (!$this->getListMode()) {
+            $this->setListMode('mosaic');
+        }
+        // $this->getRequest()->getSession()->set(sprintf('%s.list_mode', $this->getCode()), 'mosaic');
+
         $list
             ->add('id')
             ->add('title')
@@ -79,7 +88,7 @@ final class MeasurementIndexAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
+                    // 'delete' => [],
                     'submit' => [
                         'template' => 'measurement_index/list__action_submit.html.twig'
                     ],
@@ -109,6 +118,9 @@ final class MeasurementIndexAdmin extends AbstractAdmin
             ->add('id')
             ->add('title')
             ->add('description')
+            ->add('whatWeMeasure')
+            ->add('howWeMeasure')
+            ->add('researchers')
             ;
     }
 
@@ -116,13 +128,18 @@ final class MeasurementIndexAdmin extends AbstractAdmin
     {
         $collection
             ->add('submitSurvey', '{id}/submit_survey')
-            ->add('submitSurveyData', '{id}/submit_survey_data');
+            ->add('submitSurveyData', '{id}/submit_survey_data')
+        ;
+
+        $collection
+            // ->remove('show')
+        ;
     }
 
     protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
     {
         /**
-         * @var Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery
+         * @var Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery|
          */
         $query = parent::configureQuery($query);
 

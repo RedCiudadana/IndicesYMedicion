@@ -7,8 +7,8 @@ namespace App\Controller;
 use App\Entity\MeasurementIndex;
 use App\Entity\SurveySubmit;
 use App\Repository\SurveySubmitRepository;
-use Jawira\CaseConverter\Convert;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
+// * @Route("/admin/app/measurementindex/{id}/survey_submit_data", name="admin_app_measurementindex_submitSurvey")
 
 final class MeasurementIndexAdminController extends CRUDController
 {
@@ -33,6 +34,7 @@ final class MeasurementIndexAdminController extends CRUDController
         foreach ($measurementIndex->getSurveyQuestions() as $question) {
             $formType = '';
             $formOptions = [
+                'label' => $question->getName(),
                 'help' => $question->getDescription()
             ];
 
@@ -99,12 +101,11 @@ final class MeasurementIndexAdminController extends CRUDController
             ]);
         }
 
-        return $this->render('survey_submit/create.html.twig',
-            [
-                'measurementIndex' => $measurementIndex,
-                'form' => $form->createView()
-            ]
-        );
+        return $this->renderWithExtraParams('survey_submit/create.html.twig', [
+            'action' => 'edit',
+            'measurementIndex' => $measurementIndex,
+            'form' => $form->createView()
+        ]);
     }
 
     /**

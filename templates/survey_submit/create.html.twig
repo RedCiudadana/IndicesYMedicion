@@ -1,7 +1,13 @@
 {% extends '@SonataAdmin/standard_layout.html.twig' %}
 
-{% block sonata_admin_content %}
+{%- block tab_menu -%}
+    {{ knp_menu_render(admin.sidemenu("edit"), {
+        'currentClass': 'active',
+        'template': get_global_template('tab_menu_template')
+    }, 'twig') }}
+{%- endblock -%}
 
+{% block sonata_admin_content %}
     {% block notice %}
         {% include '@SonataTwig/FlashMessage/render.html.twig' %}
     {% endblock notice %}

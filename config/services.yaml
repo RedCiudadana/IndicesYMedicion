@@ -29,6 +29,8 @@ services:
 
     admin.measurement_index:
         class: App\Admin\MeasurementIndexAdmin
+        # arguments:
+        #     - '@sonata.admin.pool'
         tags:
             - { name: sonata.admin, model_class: App\Entity\MeasurementIndex, controller: App\Controller\MeasurementIndexAdminController, manager_type: orm, group: admin, label: MeasurementIndex }
         calls:
@@ -37,4 +39,4 @@ services:
     admin.survey_submit:
         class: App\Admin\SurveySubmitAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\SurveySubmit, controller: App\Controller\SurveySubmitAdminController, manager_type: orm, group: admin, label: SurveySubmit }
+            - { name: sonata.admin, model_class: App\Entity\SurveySubmit, controller: App\Controller\SurveySubmitAdminController, manager_type: orm, group: admin, label: SurveySubmit, show_in_dashboard: false }
